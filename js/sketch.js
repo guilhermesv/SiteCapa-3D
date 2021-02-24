@@ -1,8 +1,9 @@
 
 let easycam;
+let luz_distancia = 1000;
 
 function preload() {
-  octahedron = loadModel('js/Gabi.obj');
+  pessoa = loadModel('js/Gabi.obj');
 }
 
 function setup() {
@@ -19,6 +20,21 @@ function windowResized() {
 function draw() {
   rotateY(frameCount * 0.01);
   rotateX(map(mouseX, 0, width, -1, 1));
-  normalMaterial();
-  model(octahedron);
+  pointLight(255, 0, 0, -luz_distancia, -luz_distancia, 0);
+  pointLight(0, 255, 0, luz_distancia, -luz_distancia, 0);
+  pointLight(0, 0, 255, luz_distancia, luz_distancia, 0);
+  pointLight(255, 0, 255, -luz_distancia, luz_distancia, 0);
+  noStroke()
+  shininess(50);
+  specularMaterial(255,250,250);
+  model(pessoa);
+  
+  // normalMaterial();
+  // model(pessoa);
+  
+  
+  // fill(250);
+  // rotateZ(HALF_PI);
+  // translate(0, 0, -500);
+  // // model(pessoa);
 }
